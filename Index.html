@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Exercícios - Tabuada - Calculadora</title>
+<link href="Estilo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<script>
+	function EscondeDivs(id)
+	{
+        document.getElementById("tabuada").style.display = "none";
+        document.getElementById("calculadora").style.display = "none";
+		if(id!="")document.getElementById(id).style.display = "block";
+	}
+	function ExecutaTabuada()
+	{
+		var n = document.formTabuada.number.value;
+		var html = "";
+		var total = 0;
+		for(i=0;i<=10;i++){
+			total = eval(i+" * "+n);
+			html +="<p>"+n+" x "+i+" = "+total+"</p>";
+		}
+		document.getElementById("ConteudoTabuada").innerHTML = html;
+	}
+	function calcula(operacao)
+	{
+		var parcela1 = document.formCalculadora.txtVa.value;
+		var parcela2 = document.formCalculadora.txtVb.value;
+		var result = eval(parcela1+operacao+parcela2);
+		document.form1.txtTotal.value = result;
+	}
+</script>
+<main>
+	<nav>
+	<p>
+	<a href="#" onClick="EscondeDivs('tabuada')"><img src="Tabuada.png" width="225" height="225" alt="Tabuada"/></a>
+	</p>
+	<p>
+	<a href="#" onClick="EscondeDivs('calculadora')"><img src="Calculadora.png" width="225" height="225" alt="Calculadora"/></a>
+	</p>
+	</nav>
+	<article>
+      <div id="tabuada">
+            <form id="formTabuada" name="formTabuada" method="post">
+              <label for="number">Informe um numero para efetuar a Tabuada:</label>
+              <input type="number" name="number" id="number">
+              <input type="button" name="button" id="button" value="Exibir Tabuada" onClick="ExecutaTabuada()">
+          </form>
+            <h2>Tabuada</h2>
+            <div id="ConteudoTabuada"></div>
+      </div>
+      <div id="calculadora">
+          <form id="formCalculadora" name="form1" method="post">
+            <p>
+              <label for="lbVa">Valor A:</label>
+              <input type="number" name="txtVa" id="txtVa">
+              <label for="lbtVb">Valor B:</label>
+              <input type="number" name="txtVb" id="txtVb">
+            </p>
+            <p>
+              <input type="button" name="button1" id="button1" value="+" onClick="calcula('+')">
+              <input type="button" name="button2" id="button2" value="-" onClick="calcula('-')">
+              <input type="button" name="button3" id="button3" value="/" onClick="calcula('/')">
+              <input type="button" name="button4" id="button4" value="*" onClick="calcula('*')">
+            </p>
+            <p>
+              <label for="lbTotal">Total:</label>
+              <input type="number" name="txtTotal" id="txtTotal">
+            </p>
+          </form>
+      </div>
+	</article>
+<script>
+	EscondeDivs("");
+</script>
+</main>
+</body>
+</html>
